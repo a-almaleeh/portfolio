@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f3612727.css",
+    "main.js": "/static/js/main.a005c7b7.js",
+    "static/media/hero-dark.jpg": "/static/media/hero-dark.48a95d081416fa7af76f.jpg",
+    "static/media/hero-light.jpg": "/static/media/hero-light.21af7d2dbf5d82981f7c.jpg",
+    "service-worker.js": "/service-worker.js",
+    "static/media/logo-w.svg": "/static/media/logo-w.4a87ded6fc8b8c0b9bad4c543a38fed2.svg",
+    "static/media/logo.svg": "/static/media/logo.dacc91a9f059e378446dbb32090c8b92.svg",
+    "index.html": "/index.html",
+    "main.f3612727.css.map": "/static/css/main.f3612727.css.map",
+    "main.a005c7b7.js.map": "/static/js/main.a005c7b7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3612727.css",
+    "static/js/main.a005c7b7.js"
+  ]
+}
