@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 // State
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectMode } from "../app/appSlice";
-import PropTypes from "prop-types";
 // Router
 import { Link, useLocation } from "react-router-dom";
 // Images
-import defaultLogo from "../images/defaultNavLogo.svg";
+import LogoW from "../images/logo-w.svg";
+import defaultLogo from "../images/logo.svg";
+
 // Components
-import { Link as ScrollLink } from "react-scroll";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { Link as ScrollLink } from "react-scroll";
 import ThemeToggle from "./ThemeToggle";
 
 // #region constants
@@ -24,7 +26,7 @@ const navLinks = {
     { id: "2T", name: "About Me", to: "About" },
     { id: "3T", name: "Skills", to: "Skills" },
     { id: "4T", name: "Projects", to: "Projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    // { id: "5T", name: "Contact", to: "Contact" },
   ],
 };
 // #endregion
@@ -73,8 +75,9 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
         <Container>
           <Navbar.Brand>
             <img
+            color="light"
               alt="Logo"
-              src={Logo === null ? defaultLogo : Logo}
+              src={theme === "dark" ? defaultLogo : LogoW}
               width="35"
               height="35"
               className="rounded-circle logo-img"

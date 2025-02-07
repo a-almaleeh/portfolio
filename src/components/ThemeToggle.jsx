@@ -2,9 +2,9 @@ import React from "react";
 // Styles
 import styled from "styled-components";
 // State
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectMode } from "../app/appSlice";
-import PropTypes from "prop-types";
 // Icons
 import { Icon } from "@iconify/react";
 
@@ -74,9 +74,9 @@ const ThemeToggle = ({ closeDelay = 250, setExpanded, setTheme }) => {
       />
       <div>
         {theme === "light" ? (
-          <Icon icon="game-icons:sunflower" />
+          <Icon icon="line-md:sun-rising-loop" />
         ) : (
-          <Icon icon="game-icons:moon" />
+          <Icon icon="line-md:moon-loop" />
         )}
       </div>
     </StyledSwitch>

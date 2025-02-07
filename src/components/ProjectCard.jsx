@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // Icons
 import { Icon } from "@iconify/react";
 // Images
-import GH from "../images/GH.svg";
+import GH from "../images/logo.svg";
 // Components
 import { Card } from "react-bootstrap";
 
@@ -82,12 +82,12 @@ const ProjectCard = ({ demo, description, image, name, url }) => {
         <Card.Body className="overflow-auto text-center">
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          {demo !== (undefined && null && "") ? (
+          {/* {demo !== (undefined && null && "") ? (
             <Card.Link href={demo}>
               {"Live Demo "}
               <Icon icon="icon-park-outline:code-computer" />
             </Card.Link>
-          ) : null}
+          ) : null} */}
         </Card.Body>
         <Card.Footer className="text-center">
           <Card.Link href={url}>

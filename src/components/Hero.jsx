@@ -6,12 +6,11 @@ import PropTypes from "prop-types";
 // Icons
 import { Icon } from "@iconify/react";
 // Images
-import Logo from "../images/logo.svg";
-import { Light, Dark } from "../config";
+import { Dark, Light } from "../config";
 // Components
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useErrorBoundary } from "react-error-boundary";
 import { Link } from "react-scroll";
-import { Button, Col, Container, Row } from "react-bootstrap";
 import SocialLinks from "./SocialLinks";
 
 // #region styled-components
@@ -113,13 +112,13 @@ const Hero = ({ name }) => {
               <SocialLinks />
             </div>
           </Col>
-          <Col className="d-none d-md-block">
+          {/* <Col className="d-none d-md-block">
             <img
               src={Logo}
-              alt="React Logo"
+              alt="Ahmad"
               className="w-75 mx-auto hero-img"
             />
-          </Col>
+          </Col> */}
         </Row>
         <Row className="align-items-end down-container">
           <Col className="m-4 text-center">
