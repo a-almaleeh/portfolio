@@ -1,0 +1,1493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ahmad Almaleeh</title>
+    <meta
+      name="description"
+      content="Ahmad Almaleeh — Software Engineer (Python / Django / Full Stack)."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fafafa;
+        --panel: #ffffff;
+        --text: #3b4151;
+        --muted: #6b7280;
+        --line: #e1e4e8;
+        --topbar: #1b1b1b;
+        --code-bg: #333333;
+        --code-text: #f8f8f2;
+        --get: #61affe;
+        --get-bg: rgba(97, 175, 254, 0.1);
+        --post: #49cc90;
+        --post-bg: rgba(73, 204, 144, 0.1);
+        --put: #fca130;
+        --put-bg: rgba(252, 161, 48, 0.1);
+        --patch: #50e3c2;
+        --patch-bg: rgba(80, 227, 194, 0.1);
+        --accent: #89bf04;
+        --mono: "Source Code Pro", ui-monospace, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #12141a;
+          --panel: #1a1d25;
+          --text: #d6dae4;
+          --muted: #8b93a7;
+          --line: #2b303c;
+          --topbar: #0b0c10;
+          --code-bg: #0d0f14;
+          --get-bg: rgba(97, 175, 254, 0.08);
+          --post-bg: rgba(73, 204, 144, 0.08);
+          --put-bg: rgba(252, 161, 48, 0.08);
+          --patch-bg: rgba(80, 227, 194, 0.08);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Open Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        width: min(1460px, 100%);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ---------- Top bar ---------- */
+      .topbar {
+        background: var(--topbar);
+        color: #fff;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+      .topbar .wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+      .logo-mark {
+        flex: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: grid;
+        place-items: center;
+        font-family: var(--mono);
+        font-weight: 600;
+        color: #1b1b1b;
+        font-size: 15px;
+      }
+      .who {
+        min-width: 0;
+      }
+      .who h1 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+      .who p {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: #b8c0cc;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .topbar .spacer {
+        flex: 1;
+      }
+      .icon-btn {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        border: 2px solid #555;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 7px 12px;
+        border-radius: 4px;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .icon-btn:hover {
+        border-color: #888;
+      }
+      .icon-btn.linkedin {
+        background: #0a66c2;
+        border-color: #0a66c2;
+        padding: 7px 16px;
+      }
+      .icon-btn.linkedin:hover {
+        background: #004182;
+        border-color: #004182;
+      }
+      .icon-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ---------- Info ---------- */
+      .info {
+        padding: 32px 20px 20px;
+      }
+      .title {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .badge {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 600;
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 57px;
+        background: #7d8492;
+      }
+      .badge.oas {
+        background: var(--accent);
+      }
+      .info .url {
+        display: inline-block;
+        margin-top: 8px;
+        font-family: var(--mono);
+        font-size: 13px;
+        color: #4990e2;
+        cursor: pointer;
+        background: none;
+        border: 0;
+      }
+      .info .url:hover {
+        text-decoration: underline;
+      }
+      .info .desc {
+        margin-top: 16px;
+        max-width: 860px;
+        line-height: 1.65;
+      }
+      .info .links {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        font-size: 13px;
+      }
+      .info .links a {
+        color: #4990e2;
+        text-decoration: none;
+      }
+      .info .links a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---------- Controls ---------- */
+      .controls {
+        background: var(--panel);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        padding: 20px 0;
+        margin-bottom: 20px;
+      }
+      .controls .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 20px 28px;
+      }
+      .field label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      select {
+        font: inherit;
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        background: var(--panel);
+        border: 2px solid #41444e;
+        border-radius: 4px;
+        padding: 6px 32px 6px 10px;
+        min-width: 240px;
+        appearance: none;
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%23888' d='M13.4 7.4L10 10.8 6.6 7.4 5.2 8.8l4.8 4.8 4.8-4.8z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+      }
+      @media (prefers-color-scheme: dark) {
+        select {
+          border-color: #4a5060;
+        }
+      }
+      .controls .spacer {
+        flex: 1;
+      }
+      .btn {
+        font: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--text);
+        background: transparent;
+        border: 2px solid #888;
+        border-radius: 4px;
+        padding: 6px 18px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .btn:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+      }
+      .btn.green {
+        border-color: var(--post);
+        color: var(--post);
+      }
+
+      /* ---------- Tag sections ---------- */
+      .tag-section {
+        margin-bottom: 18px;
+      }
+      .tag-head {
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        text-align: left;
+        flex-wrap: wrap;
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 10px 6px 10px 10px;
+        cursor: pointer;
+      }
+      .tag-head:hover {
+        background: rgba(0, 0, 0, 0.02);
+      }
+      .tag-head h2 {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .tag-head small {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .tag-head .chev {
+        margin-left: auto;
+        align-self: center;
+        transition: transform 0.2s;
+      }
+      .tag-section.closed .chev {
+        transform: rotate(-90deg);
+      }
+      .tag-section.closed .ops {
+        display: none;
+      }
+      .chev {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+        flex: none;
+      }
+      .ops {
+        padding-top: 12px;
+      }
+
+      /* ---------- Operation ---------- */
+      .op {
+        border: 1px solid;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.19);
+        overflow: hidden;
+      }
+      .op.get {
+        border-color: var(--get);
+        background: var(--get-bg);
+      }
+      .op.post {
+        border-color: var(--post);
+        background: var(--post-bg);
+      }
+      .op.put {
+        border-color: var(--put);
+        background: var(--put-bg);
+      }
+      .op.patch {
+        border-color: var(--patch);
+        background: var(--patch-bg);
+      }
+
+      .op-summary {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px;
+        text-align: left;
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+      .method {
+        flex: none;
+        min-width: 80px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 14px;
+        color: #fff;
+        padding: 6px 0;
+        border-radius: 3px;
+      }
+      .get .method {
+        background: var(--get);
+      }
+      .post .method {
+        background: var(--post);
+      }
+      .put .method {
+        background: var(--put);
+      }
+      .patch .method {
+        background: var(--patch);
+      }
+      .path {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 15px;
+        word-break: break-all;
+      }
+      .op-desc {
+        font-size: 13px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+        flex: 1;
+      }
+      .op-summary .chev {
+        width: 18px;
+        height: 18px;
+        margin-right: 4px;
+        margin-left: auto;
+        transition: transform 0.2s;
+      }
+      .op.closed .op-summary .chev {
+        transform: rotate(-90deg);
+      }
+      .op.closed .op-body {
+        display: none;
+      }
+
+      .op-body {
+        border-top: 1px solid;
+        border-color: inherit;
+      }
+      .op-body .sec-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 8px 20px;
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      @media (prefers-color-scheme: dark) {
+        .op-body .sec-title {
+          background: rgba(255, 255, 255, 0.04);
+        }
+      }
+      .op-body .sec-title .btn {
+        padding: 3px 14px;
+        font-size: 13px;
+      }
+      .op-inner {
+        padding: 14px 20px 18px;
+      }
+
+      .resp-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+      .resp-table th {
+        text-align: left;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 0 0 8px;
+        border-bottom: 1px solid rgba(59, 65, 81, 0.2);
+      }
+      .resp-table th:first-child,
+      .resp-table td.code {
+        width: 70px;
+      }
+      .resp-table td {
+        vertical-align: top;
+        padding: 10px 0 0;
+      }
+      .resp-table td.code {
+        font-family: var(--mono);
+        font-weight: 600;
+      }
+      .media {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px 0 8px;
+        font-size: 12px;
+      }
+      .media span {
+        font-family: var(--mono);
+        background: var(--post);
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 11.5px;
+        font-weight: 600;
+      }
+      .media .label {
+        background: none !important;
+        color: var(--muted) !important;
+        font-family: inherit !important;
+      }
+
+      pre {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        line-height: 1.6;
+        color: var(--code-text);
+        background: var(--code-bg);
+        border-radius: 4px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .key {
+        color: #a6e22e;
+      }
+      .s {
+        color: #e6db74;
+      }
+      .n {
+        color: #ae81ff;
+      }
+      .p {
+        color: #f92672;
+      }
+
+      .live {
+        display: none;
+        margin-top: 14px;
+      }
+      .op.ran .live {
+        display: block;
+      }
+      .live h4 {
+        font-size: 13px;
+        margin: 10px 0 6px;
+      }
+      .live .meta {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ---------- Schemas ---------- */
+      .models {
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        margin: 10px 0 40px;
+        background: var(--panel);
+      }
+      .models h2 {
+        font-size: 20px;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .model {
+        padding: 16px 20px;
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+      .model .mname {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .model .prop {
+        padding-left: 22px;
+        display: flex;
+        gap: 6px 18px;
+        flex-wrap: wrap;
+      }
+      .model .prop b {
+        min-width: 110px;
+        font-weight: 600;
+      }
+      .model .prop i {
+        color: #55a;
+        font-style: normal;
+        min-width: 130px;
+      }
+      @media (prefers-color-scheme: dark) {
+        .model .prop i {
+          color: #8fa8ff;
+        }
+      }
+      .model .prop a {
+        color: #4990e2;
+        word-break: break-all;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        padding: 0 20px 30px;
+        font-family: var(--mono);
+      }
+
+      @media (max-width: 640px) {
+        .wrap,
+        .info {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .title {
+          font-size: 24px;
+        }
+        .icon-btn span {
+          display: none;
+        }
+        .icon-btn,
+        .icon-btn.linkedin {
+          padding: 7px 10px;
+        }
+        .op-desc {
+          display: none;
+        }
+        .method {
+          min-width: 60px;
+          font-size: 12px;
+        }
+        .path {
+          font-size: 13px;
+        }
+        select {
+          min-width: 0;
+          width: 100%;
+        }
+        .field {
+          flex: 1 1 100%;
+        }
+        .op-inner,
+        .op-body .sec-title {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        .resp-table th:first-child,
+        .resp-table td.code {
+          width: 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap">
+        <div class="logo">
+          <!-- <div class="logo-mark">{ }</div> -->
+          <div class="who">
+            <h1 id="name"></h1>
+            <p id="position"></p>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <a
+          class="icon-btn"
+          id="github"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub profile"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"
+            />
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <a
+          class="icon-btn linkedin"
+          id="linkedin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"
+            />
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="info wrap">
+      <div class="title">
+        <span id="apiTitle"></span>
+        <span class="badge">1.0.0</span>
+        <span class="badge oas">OAS 3.0</span>
+      </div>
+      <button class="url" id="download">/openapi.yaml</button>
+      <p class="desc" id="summary"></p>
+      <div class="links" id="links"></div>
+    </section>
+
+    <section class="controls">
+      <div class="wrap">
+        <div class="field">
+          <label for="section">Section</label>
+          <select id="section">
+            <option value="all">/v1 — all sections</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="media">Response content type</label>
+          <select id="media">
+            <option value="yaml">application/yaml</option>
+            <option value="json">application/json</option>
+          </select>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn" id="toggleAll">Collapse all</button>
+      </div>
+    </section>
+
+    <main class="wrap" id="main"></main>
+
+    <footer id="footer"></footer>
+
+    <script>
+      // =====================================================================
+      //  Edit your details here
+      // =====================================================================
+      const PROFILE = {
+        name: "Ahmad Almaleeh",
+        headline: "Software Engineer | Python / Django / Full Stack",
+        email: "a.almaleeh@proton.me",
+        linkedin: "https://www.linkedin.com/in/ahmad-almaleeh/",
+        github: "https://github.com/a-almaleeh",
+        portfolio: "https://a-almaleeh.github.io/portfolio/",
+        // Short, human intro shown in the page header
+        intro:
+          "Hi, I'm Ahmad. I build Python/Django backends and the APIs behind them. For four years I've been " +
+          "turning legacy data, Excel models and tricky auth into software people rely on, from the database " +
+          "all the way to deployment. I like talking directly with the people who use what I build. " +
+          "Off the clock, I run my own homelab.",
+        // Full CV summary, returned by GET /v1/profile
+        summary:
+          "Software engineer with four years of experience developing Python/Django backends, REST APIs and " +
+          "React/TypeScript applications for internal tools, multi-tenant SaaS and geospatial platforms. Builds " +
+          "migration workflows, integrations and automation, with experience in authentication, testing and " +
+          "production deployments. Combines hands-on development with project delivery and direct client " +
+          "communication. Independently operates a homelab, extending practical experience in " +
+          "private networking, identity integration and infrastructure troubleshooting.",
+      };
+
+      const MONTHS = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      const fmt = (d) => {
+        if (!d) return "present";
+        const [y, m] = d.split("-");
+        return m ? `${MONTHS[+m - 1]} ${y}` : y;
+      };
+      const period = (a, b) => `${fmt(a)} – ${fmt(b)}`;
+
+      // Sections follow the CV order:
+      // summary → experience → skills → projects → education → languages (+ detailed stack appendix)
+      // op: m = HTTP method (colour), p = path, s = summary line, body = example response
+      const TAGS = [
+        {
+          id: "profile",
+          name: "Profile",
+          desc: "Professional summary",
+          ops: [
+            {
+              m: "get",
+              p: "/profile",
+              s: "Professional summary",
+              body: {
+                name: PROFILE.name,
+                headline: PROFILE.headline,
+                summary: PROFILE.summary,
+                links: {
+                  linkedin: PROFILE.linkedin,
+                  github: PROFILE.github,
+                  portfolio: PROFILE.portfolio,
+                  email: PROFILE.email,
+                },
+              },
+            },
+          ],
+        },
+        {
+          id: "experience",
+          name: "Experience",
+          desc: "Professional experience",
+          ops: [
+            {
+              m: "get",
+              p: "/experience/software-engineer",
+              s: `Software Engineer · ${period("2022-09")}`,
+              body: {
+                position: "Software Engineer",
+                period: period("2022-09"),
+                highlights: [
+                  "Delivered internal tools and client-facing Django applications, combining development with project management and direct client communication.",
+                  "Built the legacy migration and ETL module to import MySQL data and financial models while preserving Excel/VBA behaviour.",
+                  "Developed REST APIs, maintained OpenAPI schemas and generated typed TypeScript clients for frontend integration.",
+                  "Independently built a scheduled property-data pipeline; automated financial Excel processing with Celery and Redis.",
+                  "Built React/TypeScript screens and reusable components; wrote Django and frontend tests.",
+                  "Maintained Linux production applications, Docker Compose deployments, nginx and GitHub Actions; investigated application and deployment issues.",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/experience/software-engineer-intern",
+              s: `Software Engineer Intern · ${period("2022-02", "2022-07")}`,
+              body: {
+                position: "Software Engineer Intern",
+                period: period("2022-02", "2022-07"),
+                highlights: [
+                  "Developed My Feedback, a Python-based graduation project enabling students to give lecturers feedback on their teaching; used Figma in the internship.",
+                  "Presented the graduation project to first-year ICT students after the internship.",
+                ],
+              },
+            },
+          ],
+        },
+        {
+          id: "skills",
+          name: "Skills",
+          desc: "Technical skills",
+          ops: [
+            {
+              m: "get",
+              p: "/skills/backend",
+              s: "Backend & Programming · Advanced",
+              body: {
+                name: "Backend & Programming",
+                level: "Advanced",
+                keywords: [
+                  "Python",
+                  "Django",
+                  "Django REST Framework",
+                  "Flask",
+                  "REST APIs",
+                  "OpenAPI",
+                  "SQL",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/skills/data",
+              s: "Data & Automation · Advanced",
+              body: {
+                name: "Data & Automation",
+                level: "Advanced",
+                keywords: [
+                  "PostgreSQL",
+                  "PostGIS",
+                  "MySQL",
+                  "ETL",
+                  "Data Migration",
+                  "Excel Automation",
+                  "Celery",
+                  "Redis",
+                  "RabbitMQ",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/skills/frontend",
+              s: "Frontend · Intermediate",
+              body: {
+                name: "Frontend",
+                level: "Intermediate",
+                keywords: [
+                  "TypeScript",
+                  "React",
+                  "API Integration",
+                  "Reusable Components",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/skills/infrastructure",
+              s: "Delivery & Infrastructure · Intermediate",
+              body: {
+                name: "Delivery & Infrastructure",
+                level: "Intermediate",
+                keywords: [
+                  "Linux",
+                  "Docker",
+                  "Docker Compose",
+                  "nginx",
+                  "GitHub Actions",
+                  "CI/CD",
+                  "Bash",
+                  "SSH",
+                ],
+              },
+            },
+          ],
+        },
+        {
+          id: "projects",
+          name: "Projects",
+          desc: "Selected projects",
+          ops: [
+            {
+              m: "get",
+              p: "/projects/financial-modelling-platform",
+              s: "Land and Area Development Financial Modelling Platform",
+              body: {
+                name: "Land and Area Development Financial Modelling Platform",
+                type: "Professional project",
+                highlights: [
+                  "Developed backend and React/TypeScript features for a multi-tenant platform modelling land development costs, revenues, phasing and net present value.",
+                  "Integrated historical financial models and background Excel processing, with automated checks against legacy VBA/Excel behaviour.",
+                ],
+                keywords: [
+                  "Django REST Framework",
+                  "PostgreSQL",
+                  "Celery",
+                  "React",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/projects/indicators-api",
+              s: "Environmental and Social Indicators API",
+              body: {
+                name: "Environmental and Social Indicators API",
+                type: "Professional project",
+                highlights: [
+                  "Built Django REST endpoints that return environmental, social and accessibility indicators for an address or coordinate.",
+                  "Used PostGIS spatial SQL for raster sampling and point-in-polygon data retrieval, deployed with Docker.",
+                ],
+                keywords: [
+                  "Python",
+                  "Django REST Framework",
+                  "PostGIS",
+                  "Docker",
+                ],
+              },
+            },
+            {
+              m: "get",
+              p: "/projects/mobility-planning-platform",
+              s: "Mobility and Spatial Planning Platform",
+              body: {
+                name: "Mobility and Spatial Planning Platform",
+                type: "Professional project",
+                highlights: [
+                  "Developed Django/PostGIS backend features for scenario-based mobility analysis, with RabbitMQ-backed processing and spatial result comparisons.",
+                  "Contributed React/TypeScript interfaces for maps, charts and embedded access.",
+                ],
+                keywords: ["Django", "PostGIS", "RabbitMQ", "React"],
+              },
+            },
+            {
+              m: "get",
+              p: "/projects/homelab",
+              s: "Self-Hosted Infrastructure & Private Cloud",
+              body: {
+                name: "Self-Hosted Infrastructure & Private Cloud",
+                type: "Independent personal project · HomeLab",
+                highlights: [
+                  "Operate multiple Ubuntu servers and a Hetzner VPS; deploy Docker Compose applications with persistent storage, container networking and reverse proxies.",
+                  "Configure private Headscale/Tailscale connectivity and restrictive cloud firewall rules for controlled remote access.",
+                ],
+                keywords: ["Linux", "Docker Compose", "Headscale"],
+              },
+            },
+          ],
+        },
+        {
+          id: "education",
+          name: "Education",
+          desc: "Degrees",
+          ops: [
+            {
+              m: "get",
+              p: "/education",
+              s: `Associate degree, ICT · ${period("2020-09", "2022-07")}`,
+              body: {
+                institution: "Zuyd University of Applied Sciences",
+                degree: "Associate",
+                area: "ICT",
+                period: period("2020-09", "2022-07"),
+              },
+            },
+          ],
+        },
+        {
+          id: "languages",
+          name: "Languages",
+          desc: "Spoken languages",
+          ops: [
+            {
+              m: "get",
+              p: "/languages",
+              s: "Dutch · English · Arabic",
+              body: {
+                languages: [
+                  {
+                    language: "Dutch",
+                    fluency: "Minimum Professional Proficiency",
+                  },
+                  {
+                    language: "English",
+                    fluency: "Minimum Professional Proficiency",
+                  },
+                  {
+                    language: "Arabic",
+                    fluency: "Native or Bilingual Proficiency",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        // ---------- Detailed tech stack (appendix) ----------
+        ...[
+          {
+            id: "stack-pro",
+            name: "Tech Stack · Professional",
+            desc: "Detailed stack used in production work",
+            list: [
+              [
+                "get",
+                "/languages",
+                "Programming languages",
+                ["Python", "TypeScript", "JavaScript", "SQL", "Bash"],
+              ],
+              [
+                "get",
+                "/backend",
+                "Backend frameworks",
+                ["Django", "Django REST Framework", "Flask", "FastAPI"],
+              ],
+              [
+                "post",
+                "/apis",
+                "API development",
+                [
+                  "REST APIs",
+                  "OpenAPI/Swagger",
+                  "drf-spectacular",
+                  "Generated TypeScript clients",
+                  "Third-party integrations",
+                  "Postman",
+                ],
+              ],
+              [
+                "get",
+                "/frontend",
+                "Frontend and web",
+                ["React", "HTML", "CSS", "Vite", "Leaflet"],
+              ],
+              [
+                "get",
+                "/databases",
+                "Databases",
+                ["PostgreSQL", "PostGIS", "MySQL", "Multi-tenant schemas"],
+              ],
+              [
+                "get",
+                "/geospatial",
+                "Geospatial development",
+                [
+                  "pgRouting",
+                  "GeoPandas",
+                  "Spatial SQL",
+                  "Coordinate transformations",
+                  "GeoJSON",
+                  "GeoPackage",
+                  "OpenStreetMap geocoding",
+                ],
+              ],
+              [
+                "post",
+                "/jobs",
+                "Background processing",
+                [
+                  "Celery",
+                  "Redis",
+                  "RabbitMQ",
+                  "Asynchronous workers",
+                  "Job tracking",
+                ],
+              ],
+              [
+                "patch",
+                "/data/migrations",
+                "Data engineering",
+                ["ETL", "Legacy data migration", "Data modelling"],
+              ],
+              ["get", "/scrapers", "Scraping and automation", ["Playwright"]],
+              [
+                "get",
+                "/reports",
+                "Excel and reporting",
+                [
+                  "openpyxl",
+                  "CSV/XLSX exports",
+                  "XLSB processing",
+                  "Spreadsheet automation",
+                  "Financial calculations",
+                  "Legacy Excel/VBA compatibility",
+                ],
+              ],
+              [
+                "put",
+                "/deploy",
+                "Servers and deployment",
+                ["Linux", "Docker, Docker Compose", "nginx"],
+              ],
+              [
+                "post",
+                "/pipelines",
+                "CI/CD and tooling",
+                [
+                  "Git",
+                  "GitHub",
+                  "GitLab",
+                  "GitHub Actions",
+                  "GitLab CI",
+                  "pip-tools/pip-compile",
+                ],
+              ],
+              [
+                "get",
+                "/delivery",
+                "Design and delivery skills",
+                [
+                  "Figma",
+                  "Requirements clarification",
+                  "Project delivery",
+                  "Project management",
+                  "Client communication",
+                  "Production maintenance",
+                  "Debugging and incident investigation",
+                ],
+              ],
+            ],
+          },
+          {
+            id: "stack-lab",
+            name: "Tech Stack · HomeLab",
+            desc: "Independent self-hosted infrastructure and personal projects",
+            list: [
+              [
+                "put",
+                "/infrastructure",
+                "Hosting and infrastructure",
+                [
+                  "Ubuntu servers",
+                  "Hetzner",
+                  "Docker",
+                  "Firewall configuration",
+                ],
+              ],
+              [
+                "get",
+                "/apps",
+                "Self-hosted applications",
+                ["Nextcloud", "Jellyfin", "Home Assistant"],
+              ],
+            ],
+          },
+        ].map((t) => ({
+          id: t.id,
+          name: t.name,
+          desc: t.desc,
+          ops: t.list.map(([m, p, s, items]) => ({
+            m,
+            p: `/stack/${t.id.replace("stack-", "")}${p}`,
+            s,
+            body: { category: s, count: items.length, items },
+          })),
+        })),
+      ];
+
+      // =====================================================================
+      //  Serialisers (YAML / JSON) with optional syntax highlighting
+      // =====================================================================
+      const esc = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const PLAIN = {
+        key: (k) => k,
+        str: (s) => s,
+        num: (n) => String(n),
+        p: (x) => x,
+      };
+      const HTML = {
+        key: (k) => `<span class="key">${esc(k)}</span>`,
+        str: (s) => `<span class="s">${esc(s)}</span>`,
+        num: (n) => `<span class="n">${n}</span>`,
+        p: (x) => `<span class="p">${esc(x)}</span>`,
+      };
+      const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
+      const yq = (s) =>
+        /^[A-Za-z][^:#"'\n]*$/.test(s) &&
+        !/[:\s]$/.test(s) &&
+        !/^(true|false|null|yes|no|on|off)$/i.test(s)
+          ? s
+          : JSON.stringify(s);
+      const yScalar = (v, H) =>
+        typeof v === "number" ? H.num(v) : H.str(yq(String(v)));
+
+      function toYaml(v, H, ind = "") {
+        const out = [];
+        if (Array.isArray(v)) {
+          if (!v.length) return [`${ind}[]`];
+          v.forEach((item) => {
+            if (isObj(item) || Array.isArray(item)) {
+              const sub = toYaml(item, H, ind + "  ");
+              sub[0] = `${ind}${H.p("-")} ` + sub[0].slice(ind.length + 2);
+              out.push(...sub);
+            } else out.push(`${ind}${H.p("-")} ${yScalar(item, H)}`);
+          });
+        } else {
+          Object.entries(v).forEach(([k, val]) => {
+            if (isObj(val) || (Array.isArray(val) && val.length)) {
+              out.push(`${ind}${H.key(k)}${H.p(":")}`);
+              out.push(...toYaml(val, H, ind + "  "));
+            } else if (Array.isArray(val))
+              out.push(`${ind}${H.key(k)}${H.p(":")} []`);
+            else out.push(`${ind}${H.key(k)}${H.p(":")} ${yScalar(val, H)}`);
+          });
+        }
+        return out;
+      }
+
+      function toJson(v, H, ind = "") {
+        const nx = ind + "  ";
+        if (Array.isArray(v))
+          return v.length
+            ? `[\n${v.map((x) => nx + toJson(x, H, nx)).join(",\n")}\n${ind}]`
+            : "[]";
+        if (isObj(v))
+          return `{\n${Object.entries(v)
+            .map(
+              ([k, x]) =>
+                `${nx}${H.key(JSON.stringify(k))}: ${toJson(x, H, nx)}`,
+            )
+            .join(",\n")}\n${ind}}`;
+        return typeof v === "number" ? H.num(v) : H.str(JSON.stringify(v));
+      }
+
+      // =====================================================================
+      //  Render
+      // =====================================================================
+      const $ = (id) => document.getElementById(id);
+      const slug = (s) =>
+        s
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+      const CHEV =
+        '<svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"/></svg>';
+      const full = (op) => `/v1${op.p}`;
+
+      $("name").textContent = PROFILE.name;
+      $("position").textContent = PROFILE.headline;
+      $("linkedin").href = PROFILE.linkedin;
+      $("github").href = PROFILE.github;
+      $("apiTitle").textContent = `${PROFILE.name} API`;
+      $("summary").textContent = PROFILE.intro;
+      $("links").innerHTML = [
+        ["LinkedIn", PROFILE.linkedin],
+        ["GitHub", PROFILE.github],
+        ["Email me", `mailto:${PROFILE.email}`],
+      ]
+        .map(
+          ([t, u]) =>
+            `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>`,
+        )
+        .join("");
+      $("footer").textContent =
+        `© ${new Date().getFullYear()} ${PROFILE.name} · served with 200 OK`;
+
+      const opIndex = new Map();
+      function opHTML(op) {
+        const id = `op${slug(op.p)}`;
+        opIndex.set(id, op);
+        return `
+      <div class="op ${op.m}" id="${id}">
+        <button class="op-summary" aria-expanded="true">
+          <span class="method">${op.m.toUpperCase()}</span>
+          <span class="path">${esc(full(op))}</span>
+          <span class="op-desc">${esc(op.s)}</span>
+          ${CHEV}
+        </button>
+        <div class="op-body">
+          <div class="sec-title"><span>Responses</span><button class="btn try">Try it out</button></div>
+          <div class="op-inner">
+            <table class="resp-table">
+              <thead><tr><th>Code</th><th>Description</th></tr></thead>
+              <tbody><tr>
+                <td class="code">200</td>
+                <td>
+                  <div>${esc(op.s)}</div>
+                  <div class="media"><span class="mt"></span><span class="label">Example Value</span></div>
+                  <pre class="example"></pre>
+                </td>
+              </tr></tbody>
+            </table>
+            <div class="live">
+              <h4>Curl</h4>
+              <pre class="curl"></pre>
+              <h4>Server response</h4>
+              <div class="meta"></div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+      }
+
+      $("main").innerHTML =
+        TAGS.map(
+          (t) => `
+      <section class="tag-section" data-tag="${t.id}">
+        <button class="tag-head" aria-expanded="true"><h2>${esc(t.name)}</h2><small>${esc(t.desc)}</small>${CHEV}</button>
+        <div class="ops">${t.ops.map(opHTML).join("")}</div>
+      </section>`,
+        ).join("") +
+        `
+      <section class="models">
+        <h2>Schemas</h2>
+        <div class="model">
+          <div class="mname">Developer {</div>
+          <div class="prop"><b>name</b><i>string</i><span>${esc(PROFILE.name)}</span></div>
+          <div class="prop"><b>headline</b><i>string</i><span>${esc(PROFILE.headline)}</span></div>
+          <div class="prop"><b>linkedin</b><i>string($uri)</i><a href="${esc(PROFILE.linkedin)}" target="_blank" rel="noopener noreferrer">${esc(PROFILE.linkedin)}</a></div>
+          <div class="prop"><b>github</b><i>string($uri)</i><a href="${esc(PROFILE.github)}" target="_blank" rel="noopener noreferrer">${esc(PROFILE.github)}</a></div>
+          <div class="prop"><b>email</b><i>string($email)</i><a href="mailto:${esc(PROFILE.email)}">${esc(PROFILE.email)}</a></div>
+          <div class="mname">}</div>
+        </div>
+      </section>`;
+
+      $("section").insertAdjacentHTML(
+        "beforeend",
+        TAGS.map(
+          (t) => `<option value="${t.id}">/v1 — ${esc(t.name)}</option>`,
+        ).join(""),
+      );
+
+      function paint() {
+        const fmtName = $("media").value;
+        const mt = `application/${fmtName}`;
+        const base =
+          location.origin && location.origin !== "null" ? location.origin : "";
+        document.querySelectorAll(".op").forEach((el) => {
+          const op = opIndex.get(el.id);
+          el.querySelector(".example").innerHTML =
+            fmtName === "json"
+              ? toJson(op.body, HTML)
+              : toYaml(op.body, HTML).join("\n");
+          el.querySelector(".mt").textContent = mt;
+          el.querySelector(".curl").textContent =
+            `curl -X '${op.m.toUpperCase()}' \\\n  '${base}${full(op)}' \\\n  -H 'accept: ${mt}'`;
+        });
+      }
+      paint();
+
+      // OpenAPI document for download
+      function openapiDoc() {
+        const paths = {};
+        TAGS.forEach((t) =>
+          t.ops.forEach((o) => {
+            paths[o.p] = {
+              [o.m]: {
+                tags: [t.name],
+                summary: o.s,
+                operationId: slug(o.p).replace(/-/g, "_"),
+                responses: {
+                  200: {
+                    description: "OK",
+                    content: {
+                      "application/json": {
+                        example: o.body,
+                      },
+                    },
+                  },
+                },
+              },
+            };
+          }),
+        );
+        return {
+          openapi: "3.0.3",
+          info: {
+            title: `${PROFILE.name} API`,
+            version: "1.0.0",
+            description: PROFILE.summary,
+            contact: {
+              name: PROFILE.name,
+              email: PROFILE.email,
+              url: PROFILE.linkedin,
+            },
+          },
+          servers: [{ url: "/v1" }],
+          tags: TAGS.map((t) => ({
+            name: t.name,
+            description: t.desc,
+          })),
+          paths,
+        };
+      }
+
+      // =====================================================================
+      //  Interactions
+      // =====================================================================
+      document.addEventListener("click", (e) => {
+        const sum = e.target.closest(".op-summary");
+        if (sum) {
+          const op = sum.parentElement;
+          sum.setAttribute("aria-expanded", !op.classList.toggle("closed"));
+          return;
+        }
+        const head = e.target.closest(".tag-head");
+        if (head) {
+          head.setAttribute(
+            "aria-expanded",
+            !head.parentElement.classList.toggle("closed"),
+          );
+          return;
+        }
+        const tryBtn = e.target.closest(".try");
+        if (tryBtn) {
+          const op = tryBtn.closest(".op");
+          const ran = op.classList.toggle("ran");
+          tryBtn.textContent = ran ? "Cancel" : "Try it out";
+          tryBtn.classList.toggle("green", ran);
+          if (ran)
+            op.querySelector(".meta").textContent =
+              `200 OK · ${8 + Math.floor(Math.random() * 30)} ms · content-type: application/${$("media").value}`;
+        }
+      });
+
+      $("section").addEventListener("change", (e) => {
+        const v = e.target.value;
+        document.querySelectorAll(".tag-section").forEach((s) => {
+          s.hidden = v !== "all" && s.dataset.tag !== v;
+        });
+      });
+
+      $("media").addEventListener("change", paint);
+
+      let allOpen = true;
+      $("toggleAll").addEventListener("click", () => {
+        allOpen = !allOpen;
+        document.querySelectorAll(".op").forEach((o) => {
+          o.classList.toggle("closed", !allOpen);
+          o.querySelector(".op-summary").setAttribute("aria-expanded", allOpen);
+        });
+        $("toggleAll").textContent = allOpen ? "Collapse all" : "Expand all";
+      });
+
+      $("download").addEventListener("click", () => {
+        const text = toYaml(openapiDoc(), PLAIN).join("\n") + "\n";
+        const url = URL.createObjectURL(
+          new Blob([text], { type: "application/yaml" }),
+        );
+        const a = Object.assign(document.createElement("a"), {
+          href: url,
+          download: "openapi.yaml",
+        });
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+    </script>
+  </body>
+</html>
